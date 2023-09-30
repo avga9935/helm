@@ -42,7 +42,7 @@ bash
 kubectl get pods
 ```
 
-============================== FOLLOW ONLY IF MYSQL POD IS NOW IN RUNNING STATE ===========================
+========== FOLLOW ONLY IF MYSQL POD IS NOW IN RUNNING STATE ==========
 
 # If mysql pod state is running then eveything is good to go, otherwise follow below:
 ```
