@@ -1,10 +1,5 @@
-https://get.helm.sh/helm-v3.13.0-linux-amd64.tar.gz
-
-finalizers in pvc
-chmod
-scp
 ## Introduction
-These instructions are used to install helm on k8s cluster
+These instructions are used to install helm on k8s cluster and setup mysql
 
 # Make sure k8s is setup along with worker nodes
 Follow below mentioned commands using :
