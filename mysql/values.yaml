@@ -110,9 +110,10 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+  # pvName: "mysql-pv"
+  storageClass: "-"
   accessMode: ReadWriteOnce
-  size: 8Gi
+  size: 10Gi
   annotations: {}
 
 ## Use an alternate scheduler, e.g. "stork".
