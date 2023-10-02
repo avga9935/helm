@@ -13,8 +13,8 @@ SPDX-License-Identifier: APACHE-2.0
 {{- end -}}
 {{- end -}}
 
-{{- define "mariadb.secondary.fullname" -}}
-{{- printf "%s-%s" (include "common.names.fullname" .) .Values.secondary.name | trunc 63 | trimSuffix "-" -}}
+{{- define "mariadb.fullname" -}}
+{{- printf "%s-%s" .Release.Name "mariadb" }}
 {{- end -}}
 
 {{/*
