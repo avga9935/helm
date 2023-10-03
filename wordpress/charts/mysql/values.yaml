@@ -1,0 +1,4 @@
+mysqlRootPassword: "123"
+mysqlUser: admin
+mysqlPassword: "123"
+mysqlDatabase: "wordpress"
