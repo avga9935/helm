@@ -1,0 +1,4 @@
+apiVersion: v2
+name: wordpress
+description: A Helm chart for WordPress
+version: 0.1.0
