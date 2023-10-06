@@ -17,4 +17,10 @@ every zip file is ready to go just unzip # wordpress-0.1.0.tgz and you will get 
 ```
 bash
 tar -xzvf wordpress-0.1.0.tgz
+kubectl create namespace test "helm install ANYNAME wordpress --create-namespace -namespace NAMESPACE"
 helm install ANYNAME wordpress -n NAMESPACE
+kubectl get sc,pv,pvc,svc,pod,deploy -n test
+kubectl port-forward WORDPRESS_PODNAME 8080:80
+```
+Now open a web browser and access localhost:8080
+If any database issue comes in then check database/user connection with mysql.
