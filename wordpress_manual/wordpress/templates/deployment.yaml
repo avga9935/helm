@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-wordpress
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-wordpress
+    spec:
+      containers:
+        - name: wordpress
+          image: wordpress:latest
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: "{{ .Values.wordpressHost }}"       # Enclose in double quotes
+            - name: WORDPRESS_DB_USER
+              value: "{{ .Values.wordpressUsername }}"   # Enclose in double quotes
+            - name: WORDPRESS_DB_PASSWORD
+              value: "{{ .Values.wordpressPassword }}"   # Enclose in double quotes
+            - name: WORDPRESS_DB_NAME
+              value: "{{ .Values.wordpressDatabase }}"   # Enclose in double quotes
+          ports:
+            - containerPort: 80
+      volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+  volumes:
+    - name: wordpress-persistent-storage
+      persistentVolumeClaim:
+        claimName: {{ .Values.wordpressPVCName }}

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-mysql
 spec:
   ports:
     - port: 3306
   selector:
-    app: {{ .Release.Name }}
+    app: {{ .Release.Name }}-mysql

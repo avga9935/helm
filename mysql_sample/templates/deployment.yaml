@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ .Release.Name }}-mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Release.Name }}-mysql
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Release.Name }}-mysql
     spec:
       containers:
         - name: mysql
@@ -19,7 +19,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}
+                  name: {{ .Release.Name }}-mysql-secret
                   key: mysql-root-password
           ports:
             - containerPort: 3306
@@ -29,4 +29,4 @@ spec:
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: {{ .Values.mysqlPVCName }}
+            claimName: {{ .Release.Name }}-mysql-pvc

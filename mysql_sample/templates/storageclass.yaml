@@ -1,6 +1,6 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: {{ .Values.mysqlStorageClassName }}
+  name: standard
 provisioner: kubernetes.io/host-path
 volumeBindingMode: Immediate

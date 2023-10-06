@@ -1,0 +1,7 @@
+wordpressUsername: "admin"
+wordpressPassword: "123"
+wordpressDatabase: "wordpress"
+wordpressHost: "mysql-mysql"
+wordpressPVCName: "wordpress-pvc"
+wordpressStorageClassName: "standard"
+wordpressPVName: "wordpress-pv" # Add this line

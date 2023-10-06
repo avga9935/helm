@@ -1,7 +1,0 @@
-mysqlRootPassword: "123"
-mysqlUser: "admin"
-mysqlPassword: "123"
-mysqlDatabase: "wordpress"
-mysqlPVCName: "mysql-pvc"
-mysqlStorageClassName: "standard"
-mysqlPVName: "mysql-pv" # Add this line
