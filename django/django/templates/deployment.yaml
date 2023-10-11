@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: avga9935/django:4
+          image: avga9935/django:latest
           ports:
             - containerPort: 8000 # Adjust the port as needed
 #         command: [ "/bin/bash", "-c", "--" ]
