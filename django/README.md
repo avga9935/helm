@@ -3,37 +3,20 @@ We are going to setup and deploy Django app using PostreSQL and Django, after cr
 
 # NOTE: DO NOT PROCEED UNTIL DOCKERFILE IS CREATED AND PUSHED INTO THE DOCKERHUB (while running the dockerfile using docker run command container may not start check the logs if logs have issues with the SECRET_KEY then its okay)
 
-## STEP 1 : Creating Dockerfile for django
+# STEP 1 : Creating Dockerfile for django and pushing it ro dockerhub repo. (follow readme under avga9935/helm/django/django_dockerfile)
+# Step 2 : Setup and install PostgreSQL using readme under avga9935/helm/django/postgreSQL
+# Step 3 : Setup and install PostgreSQL using readme under avga9935/helm/django/django
+
+## Once everything is done now follow below mentioned commands to proceed
 ```
 bash
-mkdir django
-cd django
-nano Dockerfile
+kubectl exec -it -n test PODNAME --/bin/sh
+# after taking shell
+python manage.py makemigrations && python manage.py migrate
+python manage.py ANYUSERNAME
+# Enter a username, email address, and password for your user
+exit
+kubectl port-forward svc/django -n test 8000:8000
 ```
-```
-FROM python:3.7.4-alpine3.10
-
-ADD django-polls /app
-
-WORKDIR /app
-
-RUN set -ex \
-    && apk add --no-cache --virtual .build-deps postgresql-dev build-base \
-    && python -m venv /env \
-    && /env/bin/pip install --upgrade pip \
-    && /env/bin/pip install --no-cache-dir -r /app/requirements.txt \
-    && runDeps="$(scanelf --needed --nobanner --recursive /env \
-        | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-        | sort -u \
-        | xargs -r apk info --installed \
-        | sort -u)" \
-    && apk add --virtual rundeps $runDeps \
-    && apk del .build-deps
-
-ENV VIRTUAL_ENV /env
-ENV PATH /env/bin:$PATH
-
-EXPOSE 8000
-
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "mysite.wsgi"]
-```
+Now access the browser and search for http://127.0.0.1:8000/admin
+# USE username and password we created at the time of taking shell
