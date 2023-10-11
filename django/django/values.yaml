@@ -1,0 +1,6 @@
+djangoUsername: "admin"
+djangoPassword: "123"
+djangoDatabase: "django"
+djangoHost: "postgresql"
+djangoStorageClassName: "standard"
+postgresqlPVCName: "postgresql-pvc"

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  serviceName: postgresql
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: postgresql
+          image: postgres:latest
+          env:
+            - name: POSTGRES_HOST
+              value: "{{ .Values.postgresqlHost }}"       # Enclose in double quotes
+            - name: POSTGRES_USER
+              value: "{{ .Values.postgresqlUser }}"   # Enclose in double quotes
+            - name: POSTGRES_PASSWORD
+              value: "{{ .Values.postgresqlPassword }}"   # Enclose in double quotes
+            - name: POSTGRES_DB
+              value: "{{ .Values.postgresqlDatabase }}"   # Enclose in double quotes
+            - name: POSTGRESQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secrets
+                  key: POSTGRESQL_PASSWORD
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"  # Allow empty password
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgresql-persistent-storage
+              mountPath: /var/lib/postgresql
+      volumes:
+        - name: postgresql-persistent-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.postgresqlPVCName }}

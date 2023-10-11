@@ -1,0 +1,8 @@
+postgresqlRootPassword: "123"
+postgresqlUser: "admin"
+postgresqlPassword: "123"
+postgresqlDatabase: "django"
+postgresqlPVCName: "postgresql-pvc"
+postgresqlStorageClassName: "standard"
+postgresqlPVName: "postgresql-pv"
+postgresqlHost: "localhost"

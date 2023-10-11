@@ -1,0 +1,5 @@
+# my-django-chart/Chart.yaml
+apiVersion: v2
+name: django-chart
+description: A Helm chart for deploying a Django application with PostgreSQL
+version: 0.1.0

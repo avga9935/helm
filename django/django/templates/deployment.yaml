@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: django
+          image: avga9935/django:4
+          ports:
+            - containerPort: 8000 # Adjust the port as needed
+#         command: [ "/bin/bash", "-c", "--" ]
+#         args: [ "while true; do sleep 30; done;" ]
+          env:
+            - name: DJANGO_SECRET_KEY
+              value: "123"
+            - name: DATABASE_HOST
+              value: {{ .Values.djangoHost }}
+            - name: DATABASE_PORT
+              value: "5432" # Adjust the port if PostgreSQL uses a different port
+            - name: DATABASE_NAME
+              value: {{ .Values.djangoDatabase }}
+            - name: DATABASE_USERNAME
+              value: {{ .Values.djangoUsername }}
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}
+                  key: django-db-password
