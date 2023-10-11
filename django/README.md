@@ -4,9 +4,16 @@ We are going to setup and deploy Django app using PostreSQL and Django, after cr
 # NOTE: DO NOT PROCEED UNTIL DOCKERFILE IS CREATED AND PUSHED INTO THE DOCKERHUB (while running the dockerfile using docker run command container may not start check the logs if logs have issues with the SECRET_KEY then its okay)
 
 # STEP 1 : Creating Dockerfile for django and pushing it ro dockerhub repo. (follow readme under avga9935/helm/django/django_dockerfile)
-# Step 2 : Setup and install PostgreSQL using readme under avga9935/helm/django/postgreSQL
-# Step 3 : Setup and install PostgreSQL using readme under avga9935/helm/django/django
-
+# Step 2 : Setup and install PostgreSQL
+```
+kubectl create namespace test
+helm install postgresql postgresql -n test
+```
+# Step 3 : Setup and install django
+```
+helm install django django -n test
+kubectl get sc,pv,pvc,svc,pod,deploy,statefulset -n test
+```
 ## Once everything is done now follow below mentioned commands to proceed
 ```
 bash
