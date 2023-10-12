@@ -20,7 +20,7 @@ bash
 kubectl exec -it -n test PODNAME --/bin/sh
 # after taking shell
 python manage.py makemigrations && python manage.py migrate
-python manage.py ANYUSERNAME
+python manage.py createsuperuser
 # Enter a username, email address, and password for your user
 exit
 kubectl port-forward svc/django -n test 8000:8000

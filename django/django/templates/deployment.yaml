@@ -22,6 +22,8 @@ spec:
           env:
             - name: DJANGO_SECRET_KEY
               value: "123"
+            - name: DATABASE_ENGINE
+              value: {{ .Values.djangoEngine }}
             - name: DATABASE_HOST
               value: {{ .Values.djangoHost }}
             - name: DATABASE_PORT
